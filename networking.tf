@@ -37,20 +37,6 @@ resource "aws_security_group" "sg_jumpbox" {
   name       = "sg_jumpbox"
   vpc_id     = aws_vpc.vpc_jumpbox.id
   ingress {
-    description = "http"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    ipv6_cidr_blocks = ["::/0"]
-  }
-  ingress {
-    description = "https"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    ipv6_cidr_blocks = ["::/0"]
-  }
-  ingress {
     description = "ssh"
     from_port   = 22
     to_port     = 22

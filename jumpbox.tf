@@ -28,7 +28,7 @@ resource "aws_instance" "jumpbox" {
     encrypted             = true
   }
   tags = {
-    "Name" = "jumpbox" 
+    "Name" = "jumpbox_v6" 
   }
 }
 
