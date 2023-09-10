@@ -5,8 +5,8 @@ resource "local_file" "jump_ssh_key" {
 }
 
 resource "local_file" "out" {
-    filename = "./out/out.md"
-    content  =  <<EOF
+  filename = "./out/out.md"
+  content  = <<EOF
 # SSH Connect
 ```bash
 ssh -i ${aws_key_pair.jump_key_pair.key_name}.pem ec2-user@${aws_instance.jumpbox.ipv6_addresses[0]}

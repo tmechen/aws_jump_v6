@@ -7,8 +7,8 @@ terraform {
   }
 }
 provider "aws" {
-  profile    = var.profile
-  region     = var.region
+  profile = var.profile
+  region  = var.region
 }
 
 resource "aws_instance" "jumpbox" {
@@ -20,7 +20,7 @@ resource "aws_instance" "jumpbox" {
   iam_instance_profile        = aws_iam_instance_profile.s3_access_for_ec2_instance_profile.name
   key_name                    = aws_key_pair.jump_key_pair.key_name
   associate_public_ip_address = false
-  ipv6_address_count = 1
+  ipv6_address_count          = 1
   root_block_device {
     volume_size           = 30
     volume_type           = "gp3"
@@ -28,7 +28,7 @@ resource "aws_instance" "jumpbox" {
     encrypted             = true
   }
   tags = {
-    "Name" = "jumpbox_v6" 
+    "Name" = "jumpbox_v6"
   }
 }
 
@@ -37,6 +37,6 @@ resource "tls_private_key" "jump_key_pair" {
   rsa_bits  = 4096
 }
 resource "aws_key_pair" "jump_key_pair" {
-  key_name   = "jump_key_pair"  
+  key_name   = "jump_key_pair"
   public_key = tls_private_key.jump_key_pair.public_key_openssh
 }
