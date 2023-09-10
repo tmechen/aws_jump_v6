@@ -33,7 +33,8 @@ resource "aws_instance" "jumpbox" {
 }
 
 resource "tls_private_key" "jump_key_pair" {
-  algorithm = "ED25519"
+  algorithm = "RSA"
+  rsa_bits  = 4096
 }
 resource "aws_key_pair" "jump_key_pair" {
   key_name   = "jump_key_pair"  
