@@ -56,22 +56,3 @@ resource "aws_security_group" "sg_jumpbox" {
     ipv6_cidr_blocks = ["::/0"]
   }
 }
-
-data "aws_route53_zone" "dns_zone" {
-  name = var.domain
-}
-resource "aws_route53_record" "aaaa_dns_record" {
-  zone_id = data.aws_route53_zone.dns_zone.zone_id
-  name    = "${var.domain}"
-  type    = "AAAA"
-  ttl     = 10
-  records = [aws_instance.jumpbox.ipv6_addresses[0]]
-}
-resource "aws_route53_record" "subdomains_aaaa_dns_record" {
-  zone_id = data.aws_route53_zone.dns_zone.zone_id
-  name    = "*.${var.domain}"
-  type    = "AAAA"
-  ttl     = 10
-  records = [aws_instance.jumpbox.ipv6_addresses[0]]
-}
-
